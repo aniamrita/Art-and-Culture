@@ -19,10 +19,17 @@ def get_snowflake_connection():
 
 
 #read any table
-def read_table(table_name: str, limit: int = 10) -> pd.DataFrame:
+def read_table(table_name: str, transform: bool = True) -> pd.DataFrame:
     conn = get_snowflake_connection()
     try:
-        query = f"SELECT * FROM {table_name} LIMIT {limit}"
+        database = "ART_AND_TORUSM"     # e.g., ART_AND_TORUSM
+        schema = os.getenv("SF_SCHEMA")         # e.g., PUBLIC
+
+        # Fully qualified table name WITH double quotes
+        full_table_name = f'"{database}"."{schema}"."{table_name}"'
+        query = f"SELECT * FROM {full_table_name}"
+
+        print(f"Executing query: {query}")  # Optional debug
         df = pd.read_sql(query, conn)
         return df
     finally:
