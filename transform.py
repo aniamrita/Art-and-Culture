@@ -1,4 +1,5 @@
 from  read_snowflake_tables import read_table
+from snowflake_writer import write_to_snowflake
 import pandas as pd
 from datetime import datetime as dt
 
@@ -60,3 +61,8 @@ merged_df_2 = merged_df.merge(top_season_by_state,on="STATE",how="inner")
 print(merged_df_2.head())
 merged_df_2 = merged_df_2[["STATE", "TOTAL_VISITORS", "SEASON", "EVENT_NAME","ART_FORM","ATTENDANCE"]]
 print(merged_df_2.head())
+
+
+write_to_snowflake(merged_df, "MERGED_GOVT_TOURISM")
+write_to_snowflake(merged_df_2, "MERGED_TOP_EVENTS")
+
