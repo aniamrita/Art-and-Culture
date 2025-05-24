@@ -17,4 +17,25 @@ def show():
 
         Navigate using the sidebar to explore the insights!
     """)
-    st.image("https://en.wikipedia.org/wiki/Kathakali#/media/File:Kathakali_-Play_with_Kaurava.jpg", use_container_width=True)
+        # 3-column layout for highlights
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("States Covered", "30+")
+
+    with col2:
+        st.metric("Tourism Records", "18,000,000+")
+
+    with col3:
+        st.metric("Cultural Events", "500+")
+
+    st.markdown("""
+        ---
+        ### 🔍 Navigate Through the App
+
+        Use the sidebar to explore:
+        - **Tourism Trends** → Compare visitor footfall across years and regions
+        - **Government Support** → See where cultural funding is flowing
+        - **Cultural Events** → Discover seasonal festivals and traditional performances
+        - **Hidden Gems** → Spot the culturally rich yet overlooked states
+    """)

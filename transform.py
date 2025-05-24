@@ -56,13 +56,13 @@ cult_event_df["MONTH"] = cult_event_df["DATE"].dt.month
 cult_event_df["SEASON"] = cult_event_df["MONTH"].apply(lambda x: get_season(x) if pd.notna(x) else None)
 # event_counts = cult_event_df.groupby(["STATE", "SEASON"]).size().reset_index(name="EVENT_COUNT")
 top_season_by_state = cult_event_df.sort_values("ATTENDANCE", ascending=False).drop_duplicates("STATE")
-print(top_season_by_state.head())
+print(merged_df.head())
 merged_df_2 = merged_df.merge(top_season_by_state,on="STATE",how="inner")
 print(merged_df_2.head())
 merged_df_2 = merged_df_2[["STATE", "TOTAL_VISITORS", "SEASON", "EVENT_NAME","ART_FORM","ATTENDANCE"]]
 print(merged_df_2.head())
 
 
-write_to_snowflake(merged_df, "MERGED_GOVT_TOURISM")
-write_to_snowflake(merged_df_2, "MERGED_TOP_EVENTS")
+# write_to_snowflake(merged_df, "MERGED_GOVT_TOURISM")
+# write_to_snowflake(merged_df_2, "MERGED_TOP_EVENTS")
 

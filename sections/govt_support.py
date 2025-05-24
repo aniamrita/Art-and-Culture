@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from transform import merged_df  # from your script after merging `tourism_df` + `govt_contri_df`
-
+from transform import merged_df 
 def show():
     st.title("🏛 Government Support for Culture")
 
